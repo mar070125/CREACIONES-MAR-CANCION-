@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app">
+
+    <p class="playlist">Tus Me Gusta</p>
+
+    <img src="zaid.jpeg" class="cover">
+
+    <div class="info">
+        <h2>La Novena Maravilla</h2>
+        <p>Remmy Valenzuela</p>
+    </div>
+
+    <audio id="audio">
+        <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <input type="range" id="progress" value="0">
+
+    <div class="controls">
+        <button onclick="back()">⏮</button>
+        <button class="play" onclick="togglePlay()">▶</button>
+        <button onclick="next()">⏭</button>
+    </div>
+
+</div>
+
+<script>
+let audio = document.getElementById("audio");
+let progress = document.getElementById("progress");
+let isPlaying = false;
+
+function togglePlay(){
+    if(isPlaying){
+        audio.pause();
+        isPlaying = false;
+    } else {
+        audio.play();
+        isPlaying = true;
+    }
+}
+
+audio.ontimeupdate = function(){
+    progress.value = (audio.currentTime / audio.duration) * 100;
+}
+
+progress.oninput = function(){
+    audio.currentTime = (progress.value / 100) * audio.duration;
+}
+
+function back(){
+    audio.currentTime = 0;
+}
+
+function next(){
+    audio.currentTime = audio.duration;
+}
+</script>
+
+</body>
+</html>
