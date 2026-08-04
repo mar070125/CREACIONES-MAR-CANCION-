@@ -22,6 +22,7 @@ body {
 /* IMAGEN */
 .cover {
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: auto;
     border-radius: 12px;
